@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "ZFish",
     images: [
       {
-        url: "/og-image.png", // Add this image to public folder (1200x630 recommended)
+        url: "/api/og?title=ZFish%20-%20Ultra-Light%20CLI%20Framework%20for%20Rust&description=Beautiful,%20zero-dependency%20CLI%20framework%20for%20Rust%20with%20colors,%20progress%20bars,%20tables,%20and%20more.",
         width: 1200,
         height: 630,
         alt: "ZFish - Ultra-Light CLI Framework for Rust",
@@ -67,7 +67,9 @@ export const metadata: Metadata = {
     title: "ZFish - Ultra-Light CLI Framework for Rust",
     description:
       "Beautiful, zero-dependency CLI framework for Rust with colors, progress bars, tables, and more.",
-    images: ["/twitter-image.png"], // Add this image to public folder (1200x600 recommended)
+    images: [
+      "/api/twitter-og?title=ZFish%20-%20Ultra-Light%20CLI%20Framework%20for%20Rust&description=Beautiful,%20zero-dependency%20CLI%20framework%20for%20Rust%20with%20colors,%20progress%20bars,%20tables,%20and%20more.",
+    ],
     creator: "@user_0xJeet",
     site: "@user_0xJeet",
   },

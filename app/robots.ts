@@ -1,0 +1,12 @@
+import { MetadataRoute } from 'next'
+
+export default function robots(): MetadataRoute.Robots {
+  return {
+    rules: {
+      userAgent: '*',
+      allow: ['/', '/api/og/', '/api/twitter-og/'],
+      disallow: [],
+    },
+    sitemap: 'https://zfish-devdocs.vercel.app/sitemap.xml',
+  }
+}
