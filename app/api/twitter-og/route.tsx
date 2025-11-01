@@ -34,6 +34,7 @@ export async function GET(request: NextRequest) {
             style={{
               fontSize: '64px',
               marginRight: '15px',
+              display: 'block',
             }}
           >
             🐟
@@ -51,6 +52,7 @@ export async function GET(request: NextRequest) {
                 color: '#e94560',
                 margin: '0',
                 lineHeight: '1.2',
+                display: 'block',
               }}
             >
               ZFish
@@ -61,6 +63,7 @@ export async function GET(request: NextRequest) {
                 color: '#a0a0a0',
                 margin: '0',
                 marginTop: '3px',
+                display: 'block',
               }}
             >
               Ultra-Light CLI Framework for Rust
@@ -74,6 +77,7 @@ export async function GET(request: NextRequest) {
             textAlign: 'center',
             maxWidth: '600px',
             marginBottom: '30px',
+            display: 'block',
           }}
         >
           <h2
@@ -82,6 +86,7 @@ export async function GET(request: NextRequest) {
               color: '#ffffff',
               margin: '0 0 15px 0',
               lineHeight: '1.3',
+              display: 'block',
             }}
           >
             {title}
@@ -92,6 +97,7 @@ export async function GET(request: NextRequest) {
               color: '#cccccc',
               margin: '0',
               lineHeight: '1.4',
+              display: 'block',
             }}
           >
             {description}
@@ -118,8 +124,8 @@ export async function GET(request: NextRequest) {
               minWidth: '120px',
             }}
           >
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>🎨</div>
-            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center' }}>Colors</div>
+            <div style={{ fontSize: '24px', marginBottom: '8px', display: 'block' }}>🎨</div>
+            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center', display: 'block' }}>Colors</div>
           </div>
           <div
             style={{
@@ -133,8 +139,8 @@ export async function GET(request: NextRequest) {
               minWidth: '120px',
             }}
           >
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>📊</div>
-            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center' }}>Progress</div>
+            <div style={{ fontSize: '24px', marginBottom: '8px', display: 'block' }}>📊</div>
+            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center', display: 'block' }}>Progress</div>
           </div>
           <div
             style={{
@@ -148,8 +154,8 @@ export async function GET(request: NextRequest) {
               minWidth: '120px',
             }}
           >
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>📋</div>
-            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center' }}>Tables</div>
+            <div style={{ fontSize: '24px', marginBottom: '8px', display: 'block' }}>📋</div>
+            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center', display: 'block' }}>Tables</div>
           </div>
           <div
             style={{
@@ -163,8 +169,8 @@ export async function GET(request: NextRequest) {
               minWidth: '120px',
             }}
           >
-            <div style={{ fontSize: '24px', marginBottom: '8px' }}>❓</div>
-            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center' }}>Prompts</div>
+            <div style={{ fontSize: '24px', marginBottom: '8px', display: 'block' }}>❓</div>
+            <div style={{ fontSize: '14px', color: '#ffffff', textAlign: 'center', display: 'block' }}>Prompts</div>
           </div>
         </div>
 
@@ -172,6 +178,7 @@ export async function GET(request: NextRequest) {
         <div
           style={{
             textAlign: 'center',
+            display: 'block',
           }}
         >
           <p
@@ -179,6 +186,7 @@ export async function GET(request: NextRequest) {
               fontSize: '14px',
               color: '#a0a0a0',
               margin: '0',
+              display: 'block',
             }}
           >
             Zero-dependency • High-performance • Beautiful CLI apps

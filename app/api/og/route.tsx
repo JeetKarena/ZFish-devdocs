@@ -34,6 +34,7 @@ export async function GET(request: NextRequest) {
             style={{
               fontSize: '72px',
               marginRight: '20px',
+              display: 'block',
             }}
           >
             🐟
@@ -51,6 +52,7 @@ export async function GET(request: NextRequest) {
                 color: '#e94560',
                 margin: '0',
                 lineHeight: '1.2',
+                display: 'block',
               }}
             >
               ZFish
@@ -61,6 +63,7 @@ export async function GET(request: NextRequest) {
                 color: '#a0a0a0',
                 margin: '0',
                 marginTop: '5px',
+                display: 'block',
               }}
             >
               Ultra-Light CLI Framework for Rust
@@ -74,6 +77,7 @@ export async function GET(request: NextRequest) {
             textAlign: 'center',
             maxWidth: '800px',
             marginBottom: '40px',
+            display: 'block',
           }}
         >
           <h2
@@ -82,6 +86,7 @@ export async function GET(request: NextRequest) {
               color: '#ffffff',
               margin: '0 0 20px 0',
               lineHeight: '1.3',
+              display: 'block',
             }}
           >
             {title}
@@ -92,6 +97,7 @@ export async function GET(request: NextRequest) {
               color: '#cccccc',
               margin: '0',
               lineHeight: '1.4',
+              display: 'block',
             }}
           >
             {description}
@@ -107,6 +113,7 @@ export async function GET(request: NextRequest) {
             border: '2px solid #e94560',
             width: '100%',
             maxWidth: '700px',
+            display: 'block',
           }}
         >
           {/* Terminal Header */}
@@ -124,6 +131,7 @@ export async function GET(request: NextRequest) {
                 borderRadius: '50%',
                 background: '#ff5f57',
                 marginRight: '8px',
+                display: 'block',
               }}
             />
             <div
@@ -133,6 +141,7 @@ export async function GET(request: NextRequest) {
                 borderRadius: '50%',
                 background: '#ffbd2e',
                 marginRight: '8px',
+                display: 'block',
               }}
             />
             <div
@@ -142,6 +151,7 @@ export async function GET(request: NextRequest) {
                 borderRadius: '50%',
                 background: '#28ca42',
                 marginRight: '8px',
+                display: 'block',
               }}
             />
           </div>
@@ -152,6 +162,7 @@ export async function GET(request: NextRequest) {
               fontSize: '18px',
               color: '#28ca42',
               marginBottom: '10px',
+              display: 'block',
             }}
           >
             $ cargo add zfish
@@ -160,6 +171,7 @@ export async function GET(request: NextRequest) {
             style={{
               fontSize: '16px',
               color: '#ffffff',
+              display: 'block',
             }}
           >
             Added zfish v0.1.10 to Cargo.toml ✨
@@ -171,6 +183,7 @@ export async function GET(request: NextRequest) {
           style={{
             marginTop: '30px',
             textAlign: 'center',
+            display: 'block',
           }}
         >
           <p
@@ -178,6 +191,7 @@ export async function GET(request: NextRequest) {
               fontSize: '16px',
               color: '#a0a0a0',
               margin: '0',
+              display: 'block',
             }}
           >
             Zero-dependency • High-performance • Beautiful CLI apps
