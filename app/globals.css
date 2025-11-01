@@ -118,6 +118,9 @@
   }
   body {
     @apply bg-background text-foreground;
+    /* Improve text rendering on mobile */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
   
   /* Fix code block selection appearance */
@@ -128,8 +131,26 @@
   }
   
   /* Ensure proper text rendering in code blocks */
-  pre code {
-    background: transparent !important;
-    text-shadow: none !important;
+  pre {
+    font-variant-ligatures: none;
+  }
+  
+  /* Improve touch targets on mobile */
+  @media (max-width: 768px) {
+    button, a, input, select, textarea {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+  
+  /* Better scrolling on iOS */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
   }
 }

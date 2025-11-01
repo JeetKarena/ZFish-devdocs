@@ -72,21 +72,23 @@ export function CodeBlock({
         </div>
       </div>
       <div className="overflow-hidden [&_pre]:!bg-transparent [&_code]:!bg-transparent">
-        <SyntaxHighlighter
-          language={language}
-          style={syntaxTheme}
-          customStyle={{
-            margin: 0,
-            padding: "1rem",
-            background: "transparent",
-            fontSize: "0.875rem",
-            lineHeight: "1.5",
-          }}
-          showLineNumbers={false}
-          PreTag="div"
-        >
-          {code}
-        </SyntaxHighlighter>
+        <div className="overflow-x-auto">
+          <SyntaxHighlighter
+            language={language}
+            style={syntaxTheme}
+            customStyle={{
+              margin: 0,
+              padding: "0.75rem 1rem",
+              background: "transparent",
+              fontSize: "0.75rem sm:0.8rem md:0.875rem",
+              lineHeight: "1.5",
+            }}
+            showLineNumbers={false}
+            PreTag="div"
+          >
+            {code}
+          </SyntaxHighlighter>
+        </div>
       </div>
       {showOutput && output && (
         <div className="border-t bg-muted/30">
