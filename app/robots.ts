@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: ['/', '/api/og/', '/api/twitter-og/'],
       disallow: [],
     },
-    sitemap: 'https://zfish-devdocs.vercel.app/sitemap.xml',
+    sitemap: 'https://zfish-devdocs.vercel.app/sitemap',
   }
 }
