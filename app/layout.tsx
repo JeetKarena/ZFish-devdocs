@@ -113,7 +113,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          {children}
+          <PostHogProvider>
+            {children}
+          </PostHogProvider>
           <Analytics />
           <SpeedInsights />
         </ThemeProvider>
