@@ -20,12 +20,3 @@ updates:
     labels:
       - "dependencies"
       - "automated"
-    ignore:
-      # Ignore major version updates for Next.js (handle manually)
-      - dependency-name: "next"
-        update-types: ["version-update:semver-major"]
-      # Ignore React major updates
-      - dependency-name: "react"
-        update-types: ["version-update:semver-major"]
-      - dependency-name: "react-dom"
-        update-types: ["version-update:semver-major"]
