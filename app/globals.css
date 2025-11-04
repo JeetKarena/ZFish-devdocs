@@ -3,6 +3,39 @@
 
 @custom-variant dark (&:is(.dark *));
 
+/* Performance optimizations */
+* {
+  /* Enable CSS containment for better performance */
+  contain: layout style paint;
+}
+
+/* Optimize animations for performance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize scrolling and text rendering performance */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Optimize text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize code blocks for performance */
+pre, code {
+  /* Prevent layout shifts */
+  contain: layout style;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -41,6 +74,39 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+}
+
+/* Performance optimizations */
+* {
+  /* Enable CSS containment for better performance */
+  contain: layout style paint;
+}
+
+/* Optimize animations for performance */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Optimize scrolling and text rendering performance */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  /* Optimize text rendering */
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Optimize code blocks for performance */
+pre, code {
+  /* Prevent layout shifts */
+  contain: layout style;
 }
 
 :root {

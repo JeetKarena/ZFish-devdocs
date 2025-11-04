@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, memo, useMemo } from "react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -34,9 +34,78 @@ const components = [
   { name: "Terminal Control", href: "/components/terminal" },
 ];
 
-export function Navigation() {
+export const Navigation = memo(function Navigation() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  // Memoize navigation data to prevent recreation on every render
+  const navigationData = useMemo(() => ({
+    navigation,
+    components
+  }), []);
+
+  const renderedNavigation = useMemo(
+    () =>
+      navigationData.navigation.map((item) => (
+        <NavigationMenuItem key={item.name}>
+          {item.name === "Components" ? (
+            <>
+              <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                  {navigationData.components.map((component) => (
+                    <li key={component.name}>
+                      <NavigationMenuLink asChild>
+                        <Link
+                          href={component.href}
+                          className={cn(
+                            "block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground",
+                            pathname === component.href && "bg-accent"
+                          )}
+                        >
+                          <div className="text-sm font-medium leading-none">
+                            {component.name}
+                          </div>
+                        </Link>
+                      </NavigationMenuLink>
+                    </li>
+                  ))}
+                </ul>
+              </NavigationMenuContent>
+            </>
+          ) : (
+            <Link
+              href={item.href}
+              className={cn(
+                "transition-colors hover:text-foreground/80",
+                pathname === item.href ? "text-foreground" : "text-foreground/60"
+              )}
+            >
+              {item.name}
+            </Link>
+          )}
+        </NavigationMenuItem>
+      )),
+    [navigationData, pathname]
+  );
+
+  const renderedComponents = useMemo(
+    () =>
+      navigationData.components.map((component) => (
+        <Link
+          key={component.href}
+          href={component.href}
+          className={cn(
+            "block px-2 py-1 text-sm rounded-md transition-colors hover:bg-accent",
+            pathname === component.href && "bg-accent text-accent-foreground"
+          )}
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          {component.name}
+        </Link>
+      )),
+    [navigationData, pathname]
+  );
 
   return (
     <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
@@ -54,14 +123,14 @@ export function Navigation() {
         <nav className="hidden md:flex items-center space-x-6 text-sm font-medium">
           <NavigationMenu>
             <NavigationMenuList>
-              {navigation.map((item) => (
+              {navigationData.navigation.map((item) => (
                 <NavigationMenuItem key={item.name}>
                   {item.name === "Components" ? (
                     <>
                       <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
                       <NavigationMenuContent>
                         <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
-                          {components.map((component) => (
+                          {navigationData.components.map((component) => (
                             <li key={component.name}>
                               <NavigationMenuLink asChild>
                                 <Link
@@ -135,7 +204,7 @@ export function Navigation() {
                 </Badge>
               </Link>
               <nav className="flex flex-col space-y-2">
-                {navigation.map((item) => (
+                {navigationData.navigation.map((item) => (
                   <div key={item.name}>
                     {item.name === "Components" ? (
                       <div className="space-y-2">
@@ -143,7 +212,7 @@ export function Navigation() {
                           {item.name}
                         </div>
                         <div className="ml-4 space-y-1">
-                          {components.map((component) => (
+                          {navigationData.components.map((component) => (
                             <Link
                               key={component.href}
                               href={component.href}
@@ -228,4 +297,6 @@ export function Navigation() {
       </div>
     </header>
   );
-}
+});
+
+export default Navigation;

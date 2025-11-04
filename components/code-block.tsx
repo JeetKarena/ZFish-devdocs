@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, memo } from "react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { oneDark, oneLight } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { Button } from "@/components/ui/button";
@@ -17,7 +17,7 @@ interface CodeBlockProps {
   title?: string;
 }
 
-export function CodeBlock({
+export const CodeBlock = memo(function CodeBlock({
   code,
   language = "rust",
   showOutput = false,
@@ -102,4 +102,4 @@ export function CodeBlock({
       )}
     </div>
   );
-}
+});
