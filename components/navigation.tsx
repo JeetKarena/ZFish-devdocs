@@ -15,7 +15,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { ThemeToggle } from "@/components/theme-toggle";
-import { Menu, X } from "lucide-react";
+import { ChevronDown, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 
 const navigation = [
@@ -37,6 +37,7 @@ const components = [
 export const Navigation = memo(function Navigation() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [mobileComponentsOpen, setMobileComponentsOpen] = useState(pathname.startsWith("/components"));
 
   // Memoize navigation data to prevent recreation on every render
   const navigationData = useMemo(() => ({
@@ -51,8 +52,8 @@ export const Navigation = memo(function Navigation() {
           {item.name === "Components" ? (
             <>
               <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+              <NavigationMenuContent className="z-[100] md:absolute md:top-full md:left-0 md:mt-2 md:shadow-lg md:border md:rounded-md bg-popover">
+                <ul className="grid gap-3 p-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 min-w-[250px]">
                   {navigationData.components.map((component) => (
                     <li key={component.name}>
                       <NavigationMenuLink asChild>
@@ -128,8 +129,8 @@ export const Navigation = memo(function Navigation() {
                   {item.name === "Components" ? (
                     <>
                       <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
-                      <NavigationMenuContent>
-                        <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px]">
+                      <NavigationMenuContent className="z-[100] md:absolute md:top-full md:left-0 md:mt-2 md:shadow-lg md:border md:rounded-md bg-popover">
+                        <ul className="grid gap-3 p-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 min-w-[250px]">
                           {navigationData.components.map((component) => (
                             <li key={component.name}>
                               <NavigationMenuLink asChild>
@@ -194,7 +195,7 @@ export const Navigation = memo(function Navigation() {
               <span className="sr-only">Toggle Menu</span>
             </Button>
           </SheetTrigger>
-          <SheetContent side="left" className="pr-0 w-80">
+          <SheetContent side="left" className="w-[min(20rem,calc(100vw-2rem))] overflow-y-auto pr-4">
             <SheetTitle className="sr-only">Mobile Navigation Menu</SheetTitle>
             <div className="flex flex-col space-y-4 mt-4">
               <Link href="/" className="flex items-center space-x-2" onClick={() => setMobileMenuOpen(false)}>
@@ -203,21 +204,28 @@ export const Navigation = memo(function Navigation() {
                   v0.1.10
                 </Badge>
               </Link>
-              <nav className="flex flex-col space-y-2">
+              <nav aria-label="Main navigation" className="flex flex-col space-y-2">
                 {navigationData.navigation.map((item) => (
                   <div key={item.name}>
                     {item.name === "Components" ? (
-                      <div className="space-y-2">
-                        <div className="font-medium text-sm text-muted-foreground px-2">
+                      <div>
+                        <button
+                          type="button"
+                          aria-expanded={mobileComponentsOpen}
+                          aria-controls="mobile-component-links"
+                          onClick={() => setMobileComponentsOpen((open) => !open)}
+                          className="flex min-h-11 w-full items-center justify-between rounded-md px-2 text-left text-sm font-medium hover:bg-accent"
+                        >
                           {item.name}
-                        </div>
-                        <div className="ml-4 space-y-1">
+                          <ChevronDown className={cn("h-4 w-4 transition-transform", mobileComponentsOpen && "rotate-180")} />
+                        </button>
+                        {mobileComponentsOpen && <div id="mobile-component-links" className="ml-3 mt-1 space-y-1 border-l pl-3">
                           {navigationData.components.map((component) => (
                             <Link
                               key={component.href}
                               href={component.href}
                               className={cn(
-                                "block px-2 py-1 text-sm rounded-md transition-colors hover:bg-accent",
+                                "flex min-h-11 items-center rounded-md px-2 text-sm transition-colors hover:bg-accent",
                                 pathname === component.href && "bg-accent text-accent-foreground"
                               )}
                               onClick={() => setMobileMenuOpen(false)}
@@ -225,13 +233,13 @@ export const Navigation = memo(function Navigation() {
                               {component.name}
                             </Link>
                           ))}
-                        </div>
+                        </div>}
                       </div>
                     ) : (
                       <Link
                         href={item.href}
                         className={cn(
-                          "block px-2 py-2 text-sm rounded-md transition-colors hover:bg-accent",
+                          "flex min-h-11 items-center px-2 text-sm rounded-md transition-colors hover:bg-accent",
                           pathname === item.href && "bg-accent text-accent-foreground"
                         )}
                         onClick={() => setMobileMenuOpen(false)}

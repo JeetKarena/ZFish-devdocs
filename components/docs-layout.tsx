@@ -21,16 +21,6 @@ export function DocsLayout({ children }: DocsLayoutProps) {
         <div className="flex items-start gap-4 sm:gap-6 md:gap-8 lg:gap-10">
           {/* Mobile/Tablet Sidebar */}
           <Sheet open={sidebarOpen} onOpenChange={setSidebarOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="sm"
-                className="lg:hidden fixed top-20 left-4 z-40 h-8 w-8 p-0"
-              >
-                <Menu className="h-4 w-4" />
-                <span className="sr-only">Toggle sidebar</span>
-              </Button>
-            </SheetTrigger>
             <SheetContent side="left" className="w-72 sm:w-80 p-0">
               <SheetTitle className="sr-only">Navigation Sidebar</SheetTitle>
               <div className="h-full overflow-y-auto">
@@ -47,6 +37,14 @@ export function DocsLayout({ children }: DocsLayoutProps) {
           {/* Main Content */}
           <main className="flex-1 py-4 sm:py-6 lg:py-8 min-w-0 w-full">
             <div className="w-full max-w-4xl mx-auto px-2 sm:px-4 md:px-0">
+              <div className="mb-4 flex justify-end lg:hidden">
+                <SheetTrigger asChild>
+                  <Button variant="outline" size="sm" className="h-10 gap-2">
+                    <Menu className="h-4 w-4" />
+                    Browse docs
+                  </Button>
+                </SheetTrigger>
+              </div>
               {children}
             </div>
           </main>
