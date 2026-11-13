@@ -95,75 +95,145 @@ term::move_cursor(10, 5)?;`,
 export default function Components() {
 	return (
 		<DocsLayout>
-			<div className="space-y-6">
-				<div>
+			<div className="space-y-8">
+				<div className="space-y-4">
 					<h1 className="scroll-m-20 text-4xl font-bold tracking-tight">
 						Components
 					</h1>
-					<p className="text-lg text-muted-foreground">
+					<p className="text-lg text-muted-foreground max-w-3xl">
 						Explore all ZFish components and learn how to use them in your
-						applications.
+						applications. Each component is designed for simplicity and performance.
 					</p>
 				</div>
 
-				<div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+				{/* Featured Components Grid */}
+				<div className="grid gap-8 md:grid-cols-2 xl:grid-cols-3">
 					{components.map((component) => (
 						<Card
 							key={component.name}
-							className="group hover:shadow-lg transition-shadow"
+							className="group hover:shadow-xl hover:border-primary/20 transition-all duration-300 hover:-translate-y-1"
 						>
-							<CardHeader>
-								<div className="flex items-center justify-between">
-									<CardTitle className="flex items-center gap-2">
-										<span className="text-2xl">{component.icon}</span>
-										{component.name}
-									</CardTitle>
-									<Badge variant="secondary">Component</Badge>
+							<CardHeader className="pb-4">
+								<div className="flex items-start justify-between gap-3">
+									<div className="flex items-center gap-3 flex-1 min-w-0">
+										<div className="text-3xl flex-shrink-0">{component.icon}</div>
+										<div className="min-w-0 flex-1">
+											<CardTitle className="text-lg leading-tight truncate">
+												{component.name}
+											</CardTitle>
+											<Badge variant="secondary" className="mt-1 text-xs">
+												Component
+											</Badge>
+										</div>
+									</div>
 								</div>
-								<CardDescription>
+								<CardDescription className="text-sm leading-relaxed mt-3">
 									{component.description}
 								</CardDescription>
 							</CardHeader>
-							<CardContent>
-								<CodeBlock
-									code={component.example}
-									language="rust"
-									title={`${component.name} Example`}
-									showOutput={true}
-									output={component.output}
-									className="mb-4"
-								/>
-								<Button asChild className="w-full">
-									<Link href={component.href}>Learn More</Link>
-								</Button>
+							<CardContent className="pt-0">
+								<div className="space-y-4">
+									{/* Compact Code Example */}
+									<div className="relative">
+										<CodeBlock
+											code={component.example}
+											language="rust"
+											title={`${component.name} Example`}
+											showOutput={true}
+											output={component.output}
+											className="text-sm"
+										/>
+									</div>
+
+									{/* Action Button */}
+									<Button asChild className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
+										<Link href={component.href} className="flex items-center justify-center gap-2">
+											Learn More
+											<span className="text-sm">→</span>
+										</Link>
+									</Button>
+								</div>
 							</CardContent>
 						</Card>
 					))}
 				</div>
 
-				{/* Architecture Note */}
+				{/* Architecture Section */}
 				<div className="mt-16">
-					<Card>
-						<CardHeader>
-							<CardTitle>Zero Dependencies</CardTitle>
-							<CardDescription>
-								ZFish is built on top of Rust's standard library only
-							</CardDescription>
-						</CardHeader>
-						<CardContent>
-							<p className="text-muted-foreground mb-4">
-								Unlike other CLI frameworks, ZFish has zero external
-								dependencies. This ensures fast compile times, small binary
-								sizes, and maximum compatibility.
-							</p>
-							<div className="flex items-center gap-4 text-sm text-muted-foreground">
-								<span>✅ No dependencies</span>
-								<span>✅ Fast compilation</span>
-								<span>✅ Small binaries</span>
-								<span>✅ Maximum compatibility</span>
-							</div>
-						</CardContent>
-					</Card>
+					<div className="grid gap-8 lg:grid-cols-2 items-start">
+						{/* Zero Dependencies Card */}
+						<Card className="border-primary/10 bg-gradient-to-br from-primary/5 to-transparent">
+							<CardHeader>
+								<CardTitle className="flex items-center gap-2 text-xl">
+									<span className="text-2xl">⚡</span>
+									Zero Dependencies
+								</CardTitle>
+								<CardDescription className="text-base">
+									ZFish is built on top of Rust's standard library only
+								</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<p className="text-muted-foreground mb-6 leading-relaxed">
+									Unlike other CLI frameworks, ZFish has zero external
+									dependencies. This ensures fast compile times, small binary
+									sizes, and maximum compatibility.
+								</p>
+								<div className="grid grid-cols-2 gap-3">
+									<div className="flex items-center gap-2 text-sm">
+										<span className="text-green-500">✅</span>
+										<span>No dependencies</span>
+									</div>
+									<div className="flex items-center gap-2 text-sm">
+										<span className="text-green-500">✅</span>
+										<span>Fast compilation</span>
+									</div>
+									<div className="flex items-center gap-2 text-sm">
+										<span className="text-green-500">✅</span>
+										<span>Small binaries</span>
+									</div>
+									<div className="flex items-center gap-2 text-sm">
+										<span className="text-green-500">✅</span>
+										<span>Maximum compatibility</span>
+									</div>
+								</div>
+							</CardContent>
+						</Card>
+
+						{/* Quick Start Card */}
+						<Card className="border-blue-500/10 bg-gradient-to-br from-blue-500/5 to-transparent">
+							<CardHeader>
+								<CardTitle className="flex items-center gap-2 text-xl">
+									<span className="text-2xl">🚀</span>
+									Quick Start
+								</CardTitle>
+								<CardDescription className="text-base">
+									Get started with ZFish in minutes
+								</CardDescription>
+							</CardHeader>
+							<CardContent>
+								<div className="space-y-4">
+									<div className="bg-muted/50 rounded-lg p-4">
+										<div className="text-sm font-medium mb-2">Add to Cargo.toml</div>
+										<code className="text-xs bg-background px-2 py-1 rounded border">
+											zfish = "0.1.0"
+										</code>
+									</div>
+									<div className="bg-muted/50 rounded-lg p-4">
+										<div className="text-sm font-medium mb-2">Basic Usage</div>
+										<code className="text-xs bg-background px-2 py-1 rounded border block">
+											use zfish::prelude::*;<br/>
+											println!("Hello, ZFish!");
+										</code>
+									</div>
+									<Button asChild className="w-full mt-4">
+										<Link href="/getting-started">
+											Get Started →
+										</Link>
+									</Button>
+								</div>
+							</CardContent>
+						</Card>
+					</div>
 				</div>
 			</div>
 		</DocsLayout>
