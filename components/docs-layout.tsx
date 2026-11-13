@@ -4,7 +4,7 @@ import { Navigation } from "@/components/navigation";
 import { Sidebar } from "@/components/sidebar";
 import { Button } from "@/components/ui/button";
 import { Menu } from "lucide-react";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { useState } from "react";
 
 interface DocsLayoutProps {
@@ -38,12 +38,18 @@ export function DocsLayout({ children }: DocsLayoutProps) {
           <main className="flex-1 py-4 sm:py-6 lg:py-8 min-w-0 w-full">
             <div className="w-full max-w-4xl mx-auto px-2 sm:px-4 md:px-0">
               <div className="mb-4 flex justify-end lg:hidden">
-                <SheetTrigger asChild>
-                  <Button variant="outline" size="sm" className="h-10 gap-2">
-                    <Menu className="h-4 w-4" />
-                    Browse docs
-                  </Button>
-                </SheetTrigger>
+                <Button
+                  type="button"
+                  variant="outline"
+                  size="sm"
+                  className="h-10 gap-2"
+                  onClick={() => setSidebarOpen(true)}
+                  aria-haspopup="dialog"
+                  aria-expanded={sidebarOpen}
+                >
+                  <Menu className="h-4 w-4" />
+                  Browse docs
+                </Button>
               </div>
               {children}
             </div>
